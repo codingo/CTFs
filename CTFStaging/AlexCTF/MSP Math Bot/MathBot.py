@@ -14,15 +14,17 @@ if __name__ == '__main__':
             data += chunk
             if len(chunk) < 4096:
                 break
- 
+        
+        decoded = data.decode('utf-8')
+
         # our flag contains ALEXCTF, once it's revealed print recevied data and exit
-        if 'ALEXCTF' in data.decode('utf-8'):
-            print(data.decode('utf-8'))
+        if 'ALEXCTF' in decoded:
+            print(decoded)
             break
         
         # \d+ matches a digit (equal to [0-9])
         # .{3} matches any  character, except line terminators exactly three times
-        m = re.search('\d+.{3}\d+', data.decode('utf-8'))
+        m = re.search('\d+.{3}\d+', decoded)
         expression = m.group(0)
  
         #properly handle division
@@ -33,7 +35,7 @@ if __name__ == '__main__':
  
         #print results to screen to see script progress
         print(expression + ' = ' + str(result))
- 
+
         #encode and transfer
         data = str(result).encode('utf-8') + b'\n'
         client.send(data)
