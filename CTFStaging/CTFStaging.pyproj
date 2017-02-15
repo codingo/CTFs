@@ -5,7 +5,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ae8a8999-bd52-4dd3-9b40-a90c1102c325</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>CTFStaging.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,7 +26,6 @@
     <Compile Include="AlexCTF\MSP Math Bot\MathBot.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CTFStaging.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AlexCTF\" />
