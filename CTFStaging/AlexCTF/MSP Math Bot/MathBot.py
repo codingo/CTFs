@@ -11,7 +11,8 @@ OPERATIONS = {
     '+': operator.add,
     '-': operator.sub,
     '*': operator.mul,
-    '/': operator.floordiv  # // operator
+    '/': operator.floordiv,  # // operator
+    '%': operator.mod
 }
 
 if __name__ == '__main__':
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         match = re.search('\d+.{3}\d+', decoded)
         if not match:
             raise ValueError("Invalid expression string")
-
+        
         expression = match.group(0)
  
         #properly handle division
