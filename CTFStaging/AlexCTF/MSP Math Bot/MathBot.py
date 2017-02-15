@@ -2,11 +2,17 @@
  
 import socket
 import re
+import operator
 
-# symbolics 
 MAXBUF = 4096
 SENTINEL = 'ALEXCTF'
 CTF_BOT = ('195.154.53.62', 1337)
+OPERATIONS = {
+    '+': operator.add,
+    '-': operator.sub,
+    '*': operator.mul,
+    '/': operator.floordiv  # // operator
+}
 
 if __name__ == '__main__':
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -30,8 +36,11 @@ if __name__ == '__main__':
         
         # \d+ matches a digit (equal to [0-9])
         # .{3} matches any  character, except line terminators exactly three times
-        m = re.search('\d+.{3}\d+', decoded)
-        expression = m.group(0)
+        match = re.search('\d+.{3}\d+', decoded)
+        if not match:
+            raise ValueError("Invalid expression string")
+
+        expression = match.group(0)
  
         #properly handle division
         if '/' in expression:
