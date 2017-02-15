@@ -2,23 +2,29 @@
  
 import socket
 import re
- 
+
+# symbolics 
+MAXBUF = 4096
+SENTINEL = 'ALEXCTF'
+CTF_BOT = ('195.154.53.62', 1337)
+
 if __name__ == '__main__':
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect(('195.154.53.62', 1337))
+    client.connect(CTF_BOT)
  
     while True:
         data = b''
         while True:
-            chunk = client.recv(4096)
+            chunk = client.recv(MAXBUF)
             data += chunk
-            if len(chunk) < 4096:
+            if len(chunk) < MAXBUF:
                 break
         
+        #store decoded data for future usage
         decoded = data.decode('utf-8')
 
         # our flag contains ALEXCTF, once it's revealed print recevied data and exit
-        if 'ALEXCTF' in decoded:
+        if SENTINEL in decoded:
             print(decoded)
             break
         
