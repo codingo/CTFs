@@ -34,7 +34,7 @@ if __name__ == '__main__':
         # store decoded data for future usage
         decoded = data.decode('utf-8')
 
-        # our flag contains ALEXCTF, once it's revealed print recevied data and exit
+        # our flag contains flag{}, once it's revealed print recevied data and exit
         if SENTINEL in decoded:
             print(decoded)
             break
