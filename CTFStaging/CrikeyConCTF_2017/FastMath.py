@@ -23,7 +23,7 @@ if __name__ == '__main__':
  
     while True:
         data = b''
-
+        
         # receive and store data
         while True:
             chunk = client.recv(MAXBUF)
@@ -33,15 +33,18 @@ if __name__ == '__main__':
         
         # store decoded data for future usage
         decoded = data.decode('utf-8')
-
+        
+        #temporary
+        print(decoded)
         # our flag contains flag{}, once it's revealed print recevied data and exit
         if SENTINEL in decoded:
             print(decoded)
             break
+
+        match = re.search('[^\:\s]\d+.{3}\d+', decoded)
         
-        # \d+ matches a digit (equal to [0-9])
-        # .{3} matches any  character, except line terminators exactly three times
-        match = re.search('\d+.{3}\d+', decoded)
+        print(str(match))
+
         if not match:
             raise ValueError("Invalid expression string")
         
