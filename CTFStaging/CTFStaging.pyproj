@@ -32,6 +32,12 @@
     <Compile Include="CrikeyConCTF_2017\FastMath.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CrikeyConCTF_2017\ImpossibleMath.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="temp.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AlexCTF\" />
