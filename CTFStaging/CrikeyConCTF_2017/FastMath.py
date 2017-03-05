@@ -8,14 +8,8 @@ import operator
 MAXBUF = 4096
 SENTINEL = 'flag'
 CTF_BOT = ('crikeyconctf.dook.biz', 23776)
-OPERATIONS = {
-    '+': operator.add,
-    '-': operator.sub,
-    '*': operator.mul,
-    '/': operator.floordiv,  # // operator
-    '%': operator.mod
-}
 
+last_answer='00000000000000000'
 
 if __name__ == '__main__':
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,7 +17,7 @@ if __name__ == '__main__':
  
     while True:
         data = b''
-        
+
         # receive and store data
         while True:
             chunk = client.recv(MAXBUF)
@@ -36,14 +30,17 @@ if __name__ == '__main__':
         
         #temporary
         print(decoded)
+        #
+
+        if last_answer in decoded:
+            continue;
+
         # our flag contains flag{}, once it's revealed print recevied data and exit
         if SENTINEL in decoded:
             print(decoded)
             break
 
         match = re.search('[^\:\s]\d+.{3}\d+', decoded)
-        
-        print(str(match))
 
         if not match:
             raise ValueError("Invalid expression string")
@@ -60,5 +57,7 @@ if __name__ == '__main__':
         print(expression + ' = ' + str(result))
 
         # encode and transfer
+        last_answer = str(result)
         data = str(result).encode('utf-8') + b'\n'
+        print('Sending: ' + str(result))
         client.send(data)
