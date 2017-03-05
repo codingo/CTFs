@@ -32,6 +32,7 @@ if __name__ == '__main__':
         print(decoded)
         #
 
+        # bot sends the last answer back as x=x to confirm, skip this itteration
         if last_answer in decoded:
             continue;
 
@@ -40,7 +41,7 @@ if __name__ == '__main__':
             print(decoded)
             break
 
-        match = re.search('[^\:\s]\d+.{3}\d+', decoded)
+        match = re.search('[^\:\s]\d+\d+.{3}\d+', decoded)
 
         if not match:
             raise ValueError("Invalid expression string")
