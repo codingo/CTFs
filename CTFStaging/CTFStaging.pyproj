@@ -26,10 +26,14 @@
     <Compile Include="AlexCTF\MSP Math Bot\MathBot.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CrikeyConCTF_2017\Craptolocker2.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AlexCTF\" />
     <Folder Include="AlexCTF\MSP Math Bot\" />
+    <Folder Include="CrikeyConCTF_2017\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
