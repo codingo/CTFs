@@ -7,18 +7,12 @@ import sys
 
 MAXBUF = 4096
 SENTINEL = 'flag'
-CTF_BOT = ('crikeyconctf.dook.biz', 43981)
+CTF_BOT = ('ctf.crikeycon.com', 43981)
 
-def int_overflow(val):
-  if not -sys.maxsize -1 <= val <= sys.maxsize:
-    val = (val + (sys.maxsize + 1)) % (2 * (sys.maxsize + 1)) - sys.maxsize - 1
-  return val
 
 if __name__ == '__main__':
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect(CTF_BOT)
- 
-    x = 0
 
     while True:
         data = b''
@@ -38,16 +32,17 @@ if __name__ == '__main__':
 
         # our flag contains flag{}, once it's revealed print recevied data and exit
         if SENTINEL in decoded:
-            print(decoded)
             break
 
-        # skip loop until we see calculation
-        if not re.search('[>*]', decoded):
+        # skip loop until we see our X * Y = Z line
+        if not re.search('[*]', decoded):
             continue
 
-        # select number and store
-        x = re.search('\d+', decoded)
-
+        # select integers and store into capture group
+        match = re.search('(\d+)', decoded)
+        
+        print('Number #1: ' + match.group(0))
+        print('Number #2: ' + match.group(1))
         
         expression = match.group(0)
  
