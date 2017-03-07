@@ -41,12 +41,9 @@ if __name__ == '__main__':
         # select integers and store into capture groups
         match = re.search('(\d+) = (\d+)', decoded)
    
-        divisible_by = int(match.group(2)) / int(match.group(1))
-        result = 4294967296 + divisible_by
-        print(result)
-
+        multiplier = int(match.group(1))
+        destination = int(match.group(2))
+        overflow = int((2**32+destination) / multiplier)
+        
         # encode and transfer
-        data = str(result).encode('utf-8') + b'\n'
-        print('Sending: ' + str(result))
-
-        client.send(data)
+        client.send(str(overflow).encode('utf-8')+ b'\n')
