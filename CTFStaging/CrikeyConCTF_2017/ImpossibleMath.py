@@ -35,27 +35,18 @@ if __name__ == '__main__':
             break
 
         # skip loop until we see our X * Y = Z line
-        if not re.search('[*]', decoded):
+        if not re.search('[=]', decoded):
             continue
 
-        # select integers and store into capture group
-        match = re.search('(\d+)', decoded)
-        
-        print('Number #1: ' + match.group(0))
-        print('Number #2: ' + match.group(1))
-        
-        expression = match.group(0)
- 
-        # properly handle division
-        if '/' in expression:
-            expression = expression.replace('/', '//')
- 
-        result = eval(expression)
- 
-        # print results to screen to see script progress
-        print(expression + ' = ' + str(result))
+        # select integers and store into capture groups
+        match = re.search('(\d+) = (\d+)', decoded)
+   
+        divisible_by = int(match.group(2)) / int(match.group(1))
+        result = 4294967296 + divisible_by
+        print(result)
 
         # encode and transfer
         data = str(result).encode('utf-8') + b'\n'
         print('Sending: ' + str(result))
+
         client.send(data)
