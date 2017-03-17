@@ -35,6 +35,9 @@
     <Compile Include="CrikeyConCTF_2017\ImpossibleMath.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CrikeyConCTF_2017\ReverseMe1.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="temp.py">
       <SubType>Code</SubType>
     </Compile>
