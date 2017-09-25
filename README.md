@@ -1,6 +1,8 @@
 # CTFs
 Code resulting from a variety of CTF challenges
 
+[![Twitter](https://img.shields.io/badge/twitter-@codingo__-blue.svg)](https://twitter.com/codingo_)
+
 # Writeups by Source
 ## CrikeyCon 2017
 Fast Math: https://www.codingo.com.au/ctf-writeup-crikeycon-2017-fast-math/
